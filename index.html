@@ -618,7 +618,7 @@ nav.scrolled {
 
 </style>
 <style>
-    footer {
+ footer {
   background-color: #1e1e1e;
   padding: 2rem 1rem;
   text-align: center;
@@ -659,32 +659,30 @@ nav.scrolled {
   transform: scale(1.2);
 }
 
+.social-icons .custom-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  filter: invert(1);
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.social-icons a:hover .custom-icon {
+  filter: invert(63%) sepia(100%) saturate(650%) hue-rotate(0deg);
+  transform: scale(1.2);
+}
+
 .contact-details {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  font-size: 0.95rem;
   margin-top: 1rem;
-}
-
-.contact-details i {
-  margin-right: 0.5rem;
-  color: #ffa500;
-}
-
-hr {
-  margin: 1.5rem auto;
-  width: 60%;
-  border-color: #fff;
-}
-
-.footer-tagline {
-  font-style: italic;
   font-size: 0.9rem;
   color: #ccc;
 }
 
+.footer-tagline {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
 </style>
 <style>
 #contact-section {
@@ -759,10 +757,35 @@ hr {
 }
 
 </style>
+<style>
+  .toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 1rem;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+</style>
 </head>
 <body>
   <nav>
-  <div class="logo">portfolio</div>
+  <div class="logo">Portfolio</div>
   <div class="menu-toggle" id="menu-toggle">&#9776;</div>
   <ul id="nav-links">
     <li><a href="#home">Home</a></li>
@@ -850,7 +873,7 @@ hr {
   <div class="tools-grid">
     <div class="tool-card">
       <img src="keli uvision.jpeg" alt="Git" />
-      <p>Git Hub</p>
+      <p>Keil µVision</p>
     </div>
     <div class="tool-card">
       <img src="lt spice.jpg" alt="Lt spice" />
@@ -957,16 +980,18 @@ hr {
     </div>
   </section>
 <section id="contact-section">
-    <h2>Contact me</h2>
-    <p>Feel Free To Reach Out To Me For Any Questions Or Opportunities.</p>
-    <div class="contact-form">
-      <input type="text" id="name" placeholder="Name">
-      <input type="email" id="email" placeholder="Email">
-      <textarea id="message" rows="6" placeholder="Message"></textarea>
-      <br>
-      <button onclick="sendMessage()">Send</button>
-    </div>
-  </section>
+  <h2>Contact me</h2>
+  <p>Feel Free To Reach Out To Me For Any Questions Or Opportunities.</p>
+  <form class="contact-form" id="contactForm">
+    <input type="text" id="name" name="name" placeholder="Name" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <textarea id="message" name="message" rows="6" placeholder="Message" required></textarea>
+    <br>
+    <button type="submit">Send</button>
+  </form>
+  <div id="toast" class="toast">Message sent successfully!</div>
+</section>
+
 
   <!-- Footer -->
  <footer>
@@ -982,7 +1007,13 @@ hr {
     <div class="social-icons">
       <a href="https://github.com/abhinav2-005" target="_blank"><i class="fab fa-github"></i></a>
       <a href="https://www.linkedin.com/in/abhinavraavi/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="mailto:raaviabhinav93@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
+      <a href="mailto:raaviabhinav93@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="https://leetcode.com/u/codebyabhinav/" target="_blank" title="LeetCode">
+        <img src="leet code image.png" alt="LeetCode" class="custom-icon" />
+      </a>
+      <a href="https://medium.com/@raaviabhinav93" target="_blank" title="Medium">
+        <i class="fab fa-medium"></i>
+      </a>
     </div>
 
     <div class="contact-details">
@@ -994,8 +1025,6 @@ hr {
   <hr>
   <p class="footer-tagline">Crafted with care, built for ease.</p>
 </footer>
-
-
 
 <style>
   .skills-grid {
@@ -1308,27 +1337,40 @@ hr {
     }
   });
 </script>
-
 <script>
-  function sendMessage() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+  const form = document.getElementById("contactForm");
+  const toast = document.getElementById("toast");
 
-    if (!name || !email || !message) {
-      alert("Please fill in all the fields.");
-      return;
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const response = await fetch("https://formspree.io/f/manjyepk", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      showToast("Message sent successfully!");
+      form.reset();
+    } else {
+      showToast("Oops! Something went wrong.");
     }
+  });
 
-    alert("Message sent successfully!");
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
-  }
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
 
-  function scrollToContact() {
-    document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
   }
 </script>
+
 </body>
 </html>
