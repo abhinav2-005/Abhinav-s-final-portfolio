@@ -7,27 +7,35 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e1e;
+  color: white;
+}
+
 nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #111; /* dark background */
+  background-color: #111;
   z-index: 1000;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* optional shadow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  animation: slideDownFade 0.6s ease-out;
 }
 
 nav .logo {
   font-weight: bold;
-  color: #ff4500; /* or any color you want */
+  color: #ff4500;
   font-size: 1.5rem;
 }
 
@@ -41,13 +49,44 @@ nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover {
   color: orange;
-  transition: 0.3s;
 }
-/* Animation keyframes */
+
+nav .menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #111;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    padding: 1rem 0;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav .menu-toggle {
+    display: block;
+  }
+}
+
+/* Animation */
 @keyframes slideDownFade {
   from {
     opacity: 0;
@@ -59,274 +98,341 @@ nav ul li a:hover {
   }
 }
 
-/* Apply animation to nav */
-nav {
-  animation: slideDownFade 0.6s ease-out;
-}
 nav.scrolled {
   background-color: #111;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease-in-out;
 }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1e1e1e;
-      color: white;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #111;
-    }
-    nav .logo {
-      color: #ff4500;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: orange;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 4rem 2rem 2rem;
-      gap: 2rem;
-    }
-    @media(min-width: 768px) {
-      .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        text-align: left;
-        padding: 4rem 6rem;
-      }
-    }
-    .content {
-  max-width: 600px;
-  animation: fadeIn 2s ease-in;
-  margin-top: 7rem;
-  margin-left: -3rem; /* Add this line */
+    /* Container for the home section */
+.container {
+  padding: 4rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
 }
 
-    .content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ccc;
-    }
-    .content h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-      color: white;
-      margin: 0.5rem 0;
-    }
-    .content h2 {
-      font-size: 1.3rem;
-      color: orange;
-      margin-bottom: 1rem;
-    }
-    .buttons {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-    }
-    .btn {
+/* Tablet and above */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 4rem 6rem;
+  }
+}
+
+/* Home wrapper flex layout */
+.home-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Content styles */
+.content {
+  flex: 1;
+  min-width: 280px;
+  max-width: 600px;
+  animation: fadeIn 2s ease-in;
+  margin: 0;
+}
+
+.content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.content h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: white;
+  margin: 0.5rem 0;
+}
+
+.content h2 {
+  font-size: 1.3rem;
+  color: orange;
+  margin-bottom: 1rem;
+}
+
+/* Buttons section */
+.buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
   padding: 0.7rem 1.5rem;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.3s, background 0.3s;
-  text-decoration: none; /* 🔥 This removes the underline */
-  display: inline-block; /* ensures consistent button styling */
+  text-decoration: none;
+  display: inline-block;
 }
 
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    .btn-contact {
-      background-color: orange;
-      color: black;
-    }
-    .btn-download {
-      background-color: #333;
-      color: white;
-      border: 1px solid #777;
-    }
-    .profile-img {
-  width: 340px;
-  height: 340px;
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-contact {
+  background-color: orange;
+  color: black;
+}
+
+.btn-download {
+  background-color: #333;
+  color: white;
+  border: 1px solid #777;
+}
+
+/* Social icons */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.socials a {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.socials a:hover {
+  color: orange;
+}
+
+/* Profile image styles */
+.profile-img {
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   animation: slideInRight 1.5s ease-out;
-  margin-left: 20rem; 
-  margin-top: 6rem; /* still moves it down */
-  /* Remove transform: translateX(-20px); */
 }
 
-    .socials {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .socials a {
-      color: white;
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
-    .socials a:hover {
-      color: orange;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    .typewriter {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 3s steps(20, end) forwards;
-    }
-    @keyframes slideInRight {
+/* ✅ Responsive: Mobile layout */
+@media screen and (max-width: 768px) {
+  .home-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .content {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .profile-img {
+    width: 200px;
+    height: 200px;
+    margin-top: 2rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(20, end) forwards;
+}
+
+@keyframes slideInRight {
   0% {
-    transform: translateX(100%); /* start far right */
+    transform: translateX(100%);
     opacity: 0;
   }
   100% {
-    transform: translateX(3px); /* end slightly left */
+    transform: translateX(3px);
     opacity: 1;
   }
 }
-.about-section {
-      background-color: #121212;
-      padding: 4rem 2rem;
-      text-align: center;
-      animation: fadeIn 2s ease-in;
 
+  .about-section {
+    background-color: #121212;
+    padding: 4rem 2rem;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+  }
+
+  .about-section h2,
+  .about-section p {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .about-section h2 {
+    animation-delay: 0.2s;
+    margin-bottom: 1rem;
+  }
+
+  .about-section p {
+    animation-delay: 0.4s;
+    margin-bottom: 3rem;
+  }
+
+  @keyframes fadeInText {
+    to {
+      opacity: 1;
     }
-    .about-section h2, .about-section p {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .about-section h2 {
-      animation-delay: 0.2s;
-      margin-bottom: 1rem;
-    }
-    .about-section p {
-      animation-delay: 0.4s;
-      margin-bottom: 3rem;
-    }
-    @keyframes fadeInText {
-      to {
-        opacity: 1;
-      }
-    }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    justify-items: center;
+  }
+
+  .card {
+    background: #1e1e1e;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+  }
+
+  .card i,
+  .card img {
+    font-size: 2rem;
+    color: orange;
+    margin-bottom: 1rem;
+  }
+
+  .card h3 {
+    color: orange;
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .card h3,
+  .card p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .card.visible h3,
+  .card.visible p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate {
+    animation: fadeInText 2s ease forwards;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 2rem;
+    scroll-margin-top: 80px;
+  }
+
+  /* 🔽 Responsive Improvements for Mobile */
+  @media (max-width: 768px) {
     .cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Force exactly 2 columns */
-  gap: 2rem;
-  justify-items: center;
-}
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
 
     .card {
-      background: #1e1e1e;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
     }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-    }
-    .card i, .card img {
-      font-size: 2rem;
-      color: orange;
-      margin-bottom: 1rem;
-    }
-    .card h3 {
-      color: orange;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      color: #ccc;
-      font-size: 0.95rem;
-    }
-    .card h3, .card p {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.card.visible h3, 
-.card.visible p {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-    .animate {
-  animation: fadeInText 2s ease forwards;
-}
-html {
-  scroll-behavior: smooth;
-}
-section {
-  min-height: 100vh; /* full screen height */
-  padding: 2rem;
-}
-section {
-  scroll-margin-top: 80px; /* adjust to your navbar height */
-}
-
+  }
 </style>
-
 <style>
 #projects-section {
   background-color: #121212;
-  padding: 2rem 1rem;
+  padding: 4rem 2rem; /* Consistent with education section */
   text-align: center;
-  min-height: 100vh; /* 👈 Forces full screen height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* move content to top */
-  margin-top:-20rem;
-  margin-left: -2rem;
-  margin-right: -2rem;
+  justify-content: flex-start;
+  margin: 0; /* Removed negative margins */
+  width: 100%;
+  box-sizing: border-box;
 }
-    .projects-container {
+
+#projects-section h2 {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+#projects-section p {
+  margin-bottom: 2rem;
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+.projects-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* smaller cards */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
   width: 100%;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
-   .project-card {
+
+.project-card {
   background-color: #2c2c2c;
   border-radius: 15px;
   overflow: hidden;
@@ -335,68 +441,18 @@ section {
   opacity: 0;
   transition: transform 0.3s ease, background-color 0.3s, box-shadow 0.3s;
 }
+
 .project-card.show {
   transform: translateY(0);
   opacity: 1;
 }
+
 .project-card:hover {
   transform: scale(1.03);
-  background-color: #2c2c2c; /* Keep card background dark */
-  box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); /* yellow glow */
-}
-.project-card img {
-  width: 100%;
-  height: 160px; /* smaller image */
-  object-fit: cover;
-}
-.project-content {
-  padding: 0.8rem;
-}
-.project-content h3 {
-  margin: 0.5rem 0;
-  color: orange;
-  font-size: 1rem; /* slightly smaller title */
-}
-.project-content p {
-  font-size: 0.85rem;
-  color: #ccc;
+  background-color: #2c2c2c;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
 }
 
-/* Tags */
-.tags {
-  margin-top: 0.8rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-.tag {
-  background-color: #444;
-  color: #fff;
-  padding: 0.2rem 0.6rem;
-  border-radius: 5px;
-  font-size: 0.75rem;
-}
-#projects-section h2 {
-  margin-bottom: 1.5rem; /* or more */
-}
-
-#projects-section p {
-  margin-bottom: 2rem; /* space between subheading and cards */
-}
-.project-text {
-  opacity: 0;
-  transform: translateY(30px); /* slightly more distance */
-  transition: opacity 1.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
-              transform 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.project-card.show .project-text {
-  opacity: 1;
-  transform: translateY(0);
-}
-.project-card .project-text {
-  transition-delay: 0.15s;
-}
 .project-image-container {
   position: relative;
 }
@@ -434,6 +490,69 @@ section {
 
 .github-icon:hover img {
   transform: scale(1.2) rotate(5deg);
+}
+
+.project-content {
+  padding: 0.8rem;
+}
+
+.project-content h3 {
+  margin: 0.5rem 0;
+  color: orange;
+  font-size: 1rem;
+}
+
+.project-content p {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+/* Tags */
+.tags {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  background-color: #444;
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+/* Project Animation */
+.project-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.project-card.show .project-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card .project-text {
+  transition-delay: 0.15s;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  #projects-section {
+    padding: 3rem 1rem;
+  }
+
+  .project-content h3 {
+    font-size: 1rem;
+  }
+
+  .project-content p {
+    font-size: 0.8rem;
+  }
 }
 
 </style>
@@ -644,7 +763,8 @@ hr {
 <body>
   <nav>
   <div class="logo">portfolio</div>
-  <ul>
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+  <ul id="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#skills-section">Skills</a></li>
@@ -655,7 +775,9 @@ hr {
 </nav>
 
 
+
   <section class="container" id="home" style="padding-top: 80px;">
+  <div class="home-wrapper">
     <div class="content">
       <p>Hello, I’m</p>
       <h1 class="typewriter">Raavi Abhinav</h1>
@@ -671,35 +793,35 @@ hr {
       </div>
     </div>
     <img src="profile_image.jpg" alt="Raavi Abhinav" class="profile-img">
-  </section>
+  </div>
+</section>
 
-
-  <section class="about-section" id = "about">
-    <h2>About Me</h2>
-    <p>A Glimpse Into My Passion for Engineering and Innovation</p>
-    <div class="cards">
-      <div class="card">
-        <i class="fas fa-user"></i>
-        <h3>Who I Am</h3>
-        <p>Final-year BTech student in Electronics and Communication Engineering, driven by a passion for innovation and real-world problem-solving through technology.</p>
-      </div>
-      <div class="card">
-        <img src="intrests.jpg" alt="My Interests" style="height: 40px;">
-        <h3>My Interests</h3>
-        <p>I'm passionate about electronics, particularly circuit design, embedded systems, VLSI, and communications. I also enjoy programming and problem-solving, and I'm always eager to explore innovative projects that combine creativity with real-world impact.</p>
-      </div>
-      <div class="card">
-        <img src="goals.png" alt="My Goals" style="height: 40px;">
-        <h3>My Goals</h3>
-        <p>My goal is to secure a role as a software engineer in a reputable company or work in a position that aligns with my core interests in electronics and communication, contributing meaningfully to technology-driven solutions.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-user"></i>
-        <h3>Beyond the Resume</h3>
-        <p>More than just a student, I’m a builder at heart—curious about how things work and driven to make them better. I enjoy exploring the overlap between hardware and software, finding smart, real-world solutions, and constantly challenging myself with new ideas and technologies.</p>
-      </div>
+  <section class="about-section" id="about">
+  <h2>About Me</h2>
+  <p>A Glimpse Into My Passion for Engineering and Innovation</p>
+  <div class="cards">
+    <div class="card">
+      <i class="fas fa-user"></i>
+      <h3>Who I Am</h3>
+      <p>Final-year BTech student in Electronics and Communication Engineering, driven by a passion for innovation and real-world problem-solving through technology.</p>
     </div>
-  </section>
+    <div class="card">
+      <img src="intrests.jpg" alt="My Interests" style="height: 40px;">
+      <h3>My Interests</h3>
+      <p>I'm passionate about electronics, particularly circuit design, embedded systems, VLSI, and communications. I also enjoy programming and problem-solving, and I'm always eager to explore innovative projects that combine creativity with real-world impact.</p>
+    </div>
+    <div class="card">
+      <img src="goals.png" alt="My Goals" style="height: 40px;">
+      <h3>My Goals</h3>
+      <p>My goal is to secure a role as a software engineer in a reputable company or work in a position that aligns with my core interests in electronics and communication, contributing meaningfully to technology-driven solutions.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-user"></i>
+      <h3>Beyond the Resume</h3>
+      <p>More than just a student, I’m a builder at heart—curious about how things work and driven to make them better. I enjoy exploring the overlap between hardware and software, finding smart, real-world solutions, and constantly challenging myself with new ideas and technologies.</p>
+    </div>
+  </div>
+</section>
 
 <section id="skills-section" class="skills-section">
     
@@ -756,6 +878,7 @@ hr {
     </div>
   </div>
 </section>
+
 <section id="projects-section">
   <h2>My Projects</h2>
   <p>Here are a few projects I've worked on recently</p>
@@ -797,7 +920,6 @@ hr {
     </div>
 
   </div>
-</section>
 </section> <!-- ✅ close skills section here -->
 
 <section id="education-section">
@@ -856,22 +978,23 @@ hr {
     <a href="#contact-section">Contact</a>
   </nav>
 
-  <div class="social-icons">
-    <a href="https://github.com/abhinav2-005" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/abhinavraavi/ target="_blank"><i class="fab fa-linkedin"></i></a>
-<a href="mailto:raaviabhinav93@gmail.com" target="_blank" rel="noopener noreferrer">
-  <i class="fas fa-envelope"></i>
-</a>
-  </div>
+  <div class="footer-main">
+    <div class="social-icons">
+      <a href="https://github.com/abhinav2-005" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/abhinavraavi/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:raaviabhinav93@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
+    </div>
 
-  <div class="contact-details">
-    <p><i class="fas fa-envelope"></i> raaviabhinav93@gmail.com</p>
-    <p><i class="fas fa-phone"></i> +91 7396443996</p>
+    <div class="contact-details">
+      <p><i class="fas fa-envelope"></i> raaviabhinav93@gmail.com</p>
+      <p><i class="fas fa-phone"></i> +91 7396443996</p>
+    </div>
   </div>
 
   <hr>
   <p class="footer-tagline">Crafted with care, built for ease.</p>
 </footer>
+
 
 
 <style>
@@ -958,14 +1081,17 @@ hr {
   padding: 4rem 2rem;
   text-align: center;
   margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
-.tools-section h2 {
+  .tools-section h2 {
   color: #ffffff;
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-
 .tools-grid {
   display: flex;
   flex-wrap: wrap;
@@ -973,7 +1099,7 @@ hr {
   gap: 1.5rem;
 }
 
-.tool-card {
+ .tool-card {
   background-color: #1c1c1c;
   padding: 1rem;
   border-radius: 10px;
@@ -981,52 +1107,72 @@ hr {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  /* Animation styles */
   opacity: 0;
   transform: translateY(20px);
 }
-.tool-card.show {
+
+ .tool-card.show {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* On hover */
 .tool-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(255, 165, 0, 0.2);
 }
 
-.tool-card img {
+  .tool-card img {
   max-width: 60px;
   height: auto;
   margin-bottom: 0.5rem;
   transition: transform 0.3s ease;
 }
-
 .tool-card p {
   margin: 0;
   color: #fff;
 }
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* ✅ Mobile Responsive Fix */
+  @media screen and (max-width: 600px) {
+    .tools-section {
+      padding: 2rem 1rem;
+      margin-bottom: 3rem; /* prevent overlap */
+    }
+
+    .tools-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .tool-card {
+      width: 80%;
+      max-width: 250px;
+    }
+
+    .tool-card img {
+      max-width: 50px;
+    }
   }
-}
-
-.tools-section {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1.2s ease-out forwards;
-  animation-delay: 0.3s;
-}
-
 </style>
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -1089,46 +1235,41 @@ hr {
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Tools animation
     const toolsSection = document.querySelector(".tools-section");
     const toolCards = document.querySelectorAll(".tool-card");
-
-    const observer = new IntersectionObserver(entries => {
+    const toolsObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           toolCards.forEach((card, index) => {
             setTimeout(() => {
               card.classList.add("show");
-            }, index * 150); // Delay based on index
+            }, index * 150);
           });
-          observer.unobserve(toolsSection); // Trigger once
+          toolsObserver.unobserve(toolsSection);
         }
       });
     });
+    toolsObserver.observe(toolsSection);
 
-    observer.observe(toolsSection);
-  });
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+    // Projects animation
     const projectCards = document.querySelectorAll(".project-card");
     const projectsContainer = document.querySelector(".projects-container");
-
-    const observer = new IntersectionObserver(entries => {
+    const projectsObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           projectCards.forEach((card, index) => {
             setTimeout(() => {
               card.classList.add("show");
-            }, index * 150); // Delay based on index
+            }, index * 150);
           });
-          observer.unobserve(projectsContainer); // Trigger once
+          projectsObserver.unobserve(projectsContainer);
         }
       });
     }, {
       threshold: 0.2
     });
-
-    observer.observe(projectsContainer);
+    projectsObserver.observe(projectsContainer);
   });
 </script>
 <script>
@@ -1189,6 +1330,5 @@ hr {
     document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
   }
 </script>
-
 </body>
 </html>
