@@ -12,7 +12,7 @@ This is my personal developer portfolio website, built to showcase my skills, pr
 
 💡 Built with HTML, CSS, JavaScript, and modern UI/UX practices
 
-<mark> 📱 Fully responsive design optimized for desktop only.</mark>
+<mark> 📱 Fully responsive design ,optimized for desktop only.</mark>
 
 📂 Sections Included<br>
 Home – Brief intro and call to action
