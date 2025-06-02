@@ -1,4 +1,4 @@
-💼 Personal Portfolio Website
+💼 Personal Portfolio Website:
 This is my personal developer portfolio website, built to showcase my skills, projects, and experiences in a clean, modern, and interactive layout. It serves as a digital introduction and a central hub for potential employers, collaborators, or anyone interested in my work.
 
 🔍 Features
