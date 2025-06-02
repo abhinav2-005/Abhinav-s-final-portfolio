@@ -1,7 +1,7 @@
-💼 Personal Portfolio Website:
+💼 Personal Portfolio Website<br>
 This is my personal developer portfolio website, built to showcase my skills, projects, and experiences in a clean, modern, and interactive layout. It serves as a digital introduction and a central hub for potential employers, collaborators, or anyone interested in my work.
 
-🔍 Features
+🔍 Features<br>
 ⚡ Smooth animations and transitions for an engaging user experience
 
 🌙 Dark theme for a sleek and professional look
@@ -14,7 +14,7 @@ This is my personal developer portfolio website, built to showcase my skills, pr
 
 📱 Fully responsive design optimized for desktop
 
-📂 Sections Included
+📂 Sections Included<br>
 Home – Brief intro and call to action
 
 About – Who I am and what I do
