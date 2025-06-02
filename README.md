@@ -11,8 +11,8 @@ This is my personal developer portfolio website, built to showcase my skills, pr
 📬 Responsive contact form with glowing inputs and animations
 
 💡 Built with HTML, CSS, JavaScript, and modern UI/UX practices
-***
-📱 Fully responsive design optimized for desktop only.
+
+<mark> 📱 Fully responsive design optimized for desktop only.</mark>
 
 📂 Sections Included<br>
 Home – Brief intro and call to action
