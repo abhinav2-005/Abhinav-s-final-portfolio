@@ -16,6 +16,9 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #1e1e1e;
   color: white;
+  cursor: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -782,6 +785,56 @@ nav.scrolled {
   bottom: 50px;
 }
 </style>
+<style>
+/* Hide the native cursor */
+
+/* Diamond grid container (2x2) */
+.pixel-grid-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+/* Diamond-shaped cells */
+.pixel-cell {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  opacity: 0.7;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+/* Glitch pulse */
+.pixel-cell.glitch {
+  animation: diamondGlitch 0.3s ease-in-out;
+}
+
+@keyframes diamondGlitch {
+  0% {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: rotate(45deg) scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.7;
+  }
+}
+</style>
 </head>
 <body>
   <nav>
@@ -1371,6 +1424,50 @@ nav.scrolled {
     }, 3000);
   }
 </script>
+<script>
+  // Create the cursor container
+const pixelCursor = document.createElement('div');
+pixelCursor.classList.add('pixel-grid-cursor');
+document.body.appendChild(pixelCursor);
 
+// Add 4 diamond blocks
+for (let i = 0; i < 4; i++) {
+  const cell = document.createElement('div');
+  cell.classList.add('pixel-cell');
+  pixelCursor.appendChild(cell);
+}
+
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function followMouse() {
+  currentX += (mouseX - currentX) * 0.2;
+  currentY += (mouseY - currentY) * 0.2;
+
+  pixelCursor.style.left = `${currentX}px`;
+  pixelCursor.style.top = `${currentY}px`;
+
+  requestAnimationFrame(followMouse);
+}
+followMouse();
+
+// Random diamond glitch effect
+setInterval(() => {
+  const cells = document.querySelectorAll('.pixel-cell');
+  const index = Math.floor(Math.random() * cells.length);
+  const cell = cells[index];
+
+  cell.classList.add('glitch');
+  setTimeout(() => {
+    cell.classList.remove('glitch');
+  }, 300);
+}, 200);
+
+</script>
 </body>
 </html>
