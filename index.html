@@ -1246,6 +1246,17 @@ nav.scrolled {
     }
   }
 </style>
+<!-- Just before the closing </body> -->
+<script>
+function scrollToContact() {
+  const contactSection = document.getElementById("contact-section");
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: "smooth" });
+  } else {
+    console.warn("No element with ID 'contact' found.");
+  }
+}
+</script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
