@@ -591,6 +591,7 @@ nav.scrolled {
   }
 </style>
 <style>
+/* Projects Section */
 #projects-section {
   background-color: #121212;
   padding: 4rem 0;
@@ -599,7 +600,6 @@ nav.scrolled {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 0;
   width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -609,8 +609,6 @@ nav.scrolled {
   margin-left: -50vw;
   margin-right: -50vw;
 }
-
-
 
 #projects-section h2 {
   margin-bottom: 1.5rem;
@@ -635,15 +633,20 @@ nav.scrolled {
   box-sizing: border-box;
 }
 
-
+/* Project Card */
 .project-card {
   background-color: #2c2c2c;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, background-color 0.3s, box-shadow 0.3s;
+  height: 100%;
+  min-height: 420px;
   transform: translateY(20px);
   opacity: 0;
-  transition: transform 0.3s ease, background-color 0.3s, box-shadow 0.3s;
 }
 
 .project-card.show {
@@ -657,6 +660,7 @@ nav.scrolled {
   box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
 }
 
+/* Image Container */
 .project-image-container {
   position: relative;
 }
@@ -696,8 +700,13 @@ nav.scrolled {
   transform: scale(1.2) rotate(5deg);
 }
 
+/* Content */
 .project-content {
   padding: 0.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project-content h3 {
@@ -758,6 +767,7 @@ nav.scrolled {
     font-size: 0.8rem;
   }
 }
+
 
 </style>
 
@@ -1348,6 +1358,59 @@ nav.scrolled {
     <!-- Project 1 -->
     <div class="project-card">
       <div class="project-image-container">
+        <img src="Copilot_20250625_222843.png" alt="Time and Space complexity Estimator">
+        <a href="https://github.com/abhinav2-005/Time-and-Space-complexity-estimater" class="github-icon" target="_blank" aria-label="GitHub Repo">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" />
+        </a>
+      </div>
+      <div class="project-content">
+        <h3>Time and Space Complexity Estimator</h3>
+        <p>An AI-powered Python web app that analyzes user-submitted code and estimates its time complexity using the Google Gemini API.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">API Integration</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-image-container">
+        <img src="Copilot_20250625_225152.png" alt="Gym-Member-Management-System">
+        <a href="https://github.com/abhinav2-005/Gym-Member-Management-System" class="github-icon" target="_blank" aria-label="GitHub Repo">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" />
+        </a>
+      </div>
+      <div class="project-content">
+        <h3>Gym-Member-Management-System</h3>
+        <p>A Python-based desktop application with a custom GUI to handle gym member registration and login for a college facility supporting 100+ users.</p>
+        <div class="tags">
+          <span class="tag">Python </span>
+          <span class="tag">TK Inter</span>
+          <span class="tag">MYSQL Database Integration</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-image-container">
+        <img src="Copilot_20250625_225725.png" alt="A Basic Calculator">
+        <a href="https://github.com/abhinav2-005/new_calculator" class="github-icon" target="_blank" aria-label="GitHub Repo">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" />
+        </a>
+      </div>
+      <div class="project-content">
+        <h3>A Basic Calculator</h3>
+        <p>Created during a Python Full Stack Developer virtual internship using HTML, CSS, and JavaScript.Designed a modern and responsive UI that performs 4 basic arithmetic operations like addition, subtraction,
+multiplication, and division with real-time interaction and zero page reloads.</p>
+        <div class="tags">
+          <span class="tag">HTML </span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+        </div>
+      </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-image-container">
         <img src="password generator project.jpg" alt="Password Generator">
         <a href="https://github.com/abhinav2-005/Password-Generator" class="github-icon" target="_blank" aria-label="GitHub Repo">
           <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Icon" />
@@ -1363,7 +1426,7 @@ nav.scrolled {
       </div>
     </div>
 
-    <!-- Project 2 -->
+    <!-- Project 3 -->
     <div class="project-card">
       <div class="project-image-container">
         <img src="line following car project.jpg" alt="Line Following Robotic Car">
@@ -1380,8 +1443,7 @@ nav.scrolled {
     </div>
 
   </div>
-</section> <!-- ✅ close skills section here -->
-
+</section>
 <section class="certification-section" id="certifications">
   <div class="cert-header">
     <h2>Certifications</h2>
@@ -1390,6 +1452,36 @@ nav.scrolled {
 
   <div class="certification-grid">
     <!-- Card 1 -->
+     <div class="flip-card fade-in">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="PythonEssentials1Update20250625-27-t18jyz_page-0001.jpg" alt="cisco Certificate" />
+        </div>
+        <div class="flip-back">
+          <h3>Python Essentials 1</h3>
+          <p><strong>Issued by:</strong>Cisco</p>
+          <ul>
+            <li>ained hands-on experience with fundamental data structures like strings, lists, and dictionaries.</li>
+            <li>Developed logic-building skills through practical exercises and problem-solving tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+     <div class="flip-card fade-in">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img src="PythonEssentials2Update20250625-28-y5d6ov_page-0001.jpg" alt="Cisco Certificate" />
+        </div>
+        <div class="flip-back">
+          <h3>Python Essentials 2</h3>
+          <p><strong>Issued by:</strong>Cisco</p>
+          <ul>
+           <li>Deepened knowledge in object-oriented programming (OOP) including classes, inheritance, and polymorphism.</li>
+            <li>Worked with Python modules, exception handling, file operations, and advanced data manipulation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="flip-card fade-in">
       <div class="flip-inner">
         <div class="flip-front">
